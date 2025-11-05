@@ -1,18 +1,17 @@
 import { getStoryblokApi, StoryblokStory } from "@storyblok/react/rsc";
-import { draftMode } from "next/headers";
 
-const fetchServicePage = async () => {
+const fetchCastingPage = async () => {
   const client = getStoryblokApi();
 
-  const response = await client.getStory("services", {
+  const response = await client.getStory("casting", {
     version: "draft",
   });
 
   return response.data.story;
 };
 
-export default async function ServicePage() {
-  const story = await fetchServicePage();
+export default async function CastingPage() {
+  const story = await fetchCastingPage();
 
   return (
     <main>

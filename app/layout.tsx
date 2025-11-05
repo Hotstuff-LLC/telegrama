@@ -1,10 +1,25 @@
-import "./storyblok";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { StoryblokProvider } from "../src/components/StoryblokProvider";
 import { Header } from "../src/components/Header";
 import { Footer } from "../src/components/Footer";
+import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
+import { DM_Sans } from "next/font/google";
+
+storyblokInit({
+  accessToken: process.env.STORYBLOK_TOKEN,
+  use: [apiPlugin],
+});
+
+export {};
+
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"], // choose the weights you need
+  variable: "--font-dm-sans",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,11 +45,11 @@ export default function RootLayout({
     <StoryblokProvider>
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased pt-40 pb-40`}
+        className={`${dmSans.variable} ${geistMono.variable} antialiased pt-40`}
       >
                   <Header />
-                  <Footer />
         {children}
+                  <Footer />
       </body>
     </html>
     </StoryblokProvider>
