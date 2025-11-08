@@ -15,7 +15,7 @@ export default async function ServicePage() {
   const story = await fetchServicePage();
 
   return (
-    <main>
+    <main style={{ backgroundColor: "#F3e4cd" }}>
       <StoryblokStory story={story} />
     </main>
   );

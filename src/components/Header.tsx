@@ -1,23 +1,38 @@
-"use client";
 import Link from "next/link";
+import HeaderClient from "./HeaderClient";
 
-
-export const Header = (params: any) => {
-
+export const Header = () => {
   return (
-    <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 `}>
-        <nav className="container mx-auto bg-white px-4 w-full py-8 flex justify-between">
-        <Link href="/"><img src="/imgs/Logo.png" alt="Logo" /></Link>
-        <Link href="/">About Us</Link>
-        <Link href="/">News</Link>
-        <Link href="/">Production Services</Link>
-        <Link href="/">Team</Link>
-        <Link href="/">Testimonials</Link>
-        <Link href="/">Clients</Link>
-        <Link href="/">Contact</Link>
+    <HeaderClient>
+      <nav className="container mx-auto flex items-center justify-between px-6 py-4">
+        <Link href="/">
+          <img
+            src="/imgs/Logo.png"
+            alt="Logo"
+            className="h-10 w-auto"
+          />
+        </Link>
 
+        <div className="flex items-center space-x-8 text-lg font-normal">
+          <Link href="/" className="text-[#F0B225]">
+            Productions
+          </Link>
+          <Link href="/">About Us</Link>
+          <Link href="/">Clients</Link>
+          <Link href="/">Services</Link>
+          <Link href="/">Team</Link>
+          <Link href="/">FAQ</Link>
+
+          <Link
+            href="/"
+            className="text-white text-base rounded-full bg-[#EC3A1A] px-6 py-2 font-medium"
+          >
+            Contact
+          </Link>
+        </div>
       </nav>
-    </header>
+    </HeaderClient>
   );
 };
+
+export default Header;

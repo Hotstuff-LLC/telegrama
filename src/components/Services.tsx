@@ -1,13 +1,14 @@
-import { StoryblokComponent } from "@storyblok/react";
+import { Service_card_client } from "./service_card.client";
 
 export const Services = ({ blok }: any) => {
-    
-    return (
-            <div className="p-4 border rounded-lg shadow-sm">
-             {blok.service_card?.map((nestedBlok: any) => (
-                <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
-                 ))}
-            </div>
-         )
-    
-}
+  return (
+    <div className="p-4 container mx-auto">
+      {blok.service_card?.map((nestedBlok: any) => (
+        <Service_card_client
+          blok={nestedBlok}
+          key={nestedBlok._uid}
+        />
+      ))}
+    </div>
+  );
+};

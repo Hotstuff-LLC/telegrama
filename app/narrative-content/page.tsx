@@ -4,7 +4,7 @@ const fetchNarrativePage = async () => {
   const client = getStoryblokApi();
 
   const response = await client.getStory("narrative-content", {
-    version: "draft",
+    version: process.env.NODE_ENV === "development" ? "draft" : "published",
   });
 
   return response.data.story;
@@ -14,8 +14,8 @@ export default async function NarrativePage() {
   const story = await fetchNarrativePage();
 
   return (
-    <main>
-      <StoryblokStory story={story} />
+    <main  style={{ backgroundColor: "#F3e4cd" }}>
+      <StoryblokStory story={story}/>
     </main>
   );
 }
