@@ -6,7 +6,7 @@ export const Footer = () => {
   return (
     <div>
       <div className="flex flex-col">
-        {/* Top CTA Section — interactive part moved to FooterClient */}
+        {/* Top CTA Section */}
         <FooterClient />
 
         {/* Footer Info Section */}
@@ -14,29 +14,41 @@ export const Footer = () => {
           className="w-full bg-black text-white mt-auto py-4 transition-all duration-300"
           style={{ backgroundColor: "#1d2020" }}
         >
-          <nav className="container mx-auto px-4 w-full py-8 flex flex-col justify-between ml-[33%]">
-            <div className="py-16 border-b border-gray-300">
-              <p className="text-lg font-thin">Address</p>
-              <h3 className="text-4xl">
+          <nav
+            className="
+              container mx-auto px-4 w-full py-8 flex flex-col justify-between
+              md:ml-[33%] ml-0
+            "
+          >
+            {/* Address */}
+            <div className="py-10 md:py-16 border-b border-gray-300">
+              <p className="text-base md:text-lg font-thin">Address</p>
+              <h3 className="text-2xl md:text-4xl leading-snug">
                 Etla 9, Col. Hipódromo, 06100, Ciudad de México, México
               </h3>
             </div>
 
-            <div className="py-16 border-b border-gray-300">
-              <p className="text-lg font-thin">Phone</p>
-              <h3 className="text-4xl pt-2">+ 52 1 552 202 1414</h3>
+            {/* Phone */}
+            <div className="py-10 md:py-16 border-b border-gray-300">
+              <p className="text-base md:text-lg font-thin">Phone</p>
+              <h3 className="text-2xl md:text-4xl pt-2">+ 52 1 552 202 1414</h3>
             </div>
 
-            <div className="flex flex-col py-16 border-b border-gray-300">
-              <p className="text-lg font-thin">Email</p>
-              <h3 className="text-4xl pt-2">cath@tlgm.mx</h3>
-              <h3 className="text-4xl">enrique@tlgm.mx</h3>
+            {/* Email */}
+            <div className="flex flex-col py-10 md:py-16 border-b border-gray-300">
+              <p className="text-base md:text-lg font-thin">Email</p>
+              <h3 className="text-2xl md:text-4xl pt-2">cath@tlgm.mx</h3>
+              <h3 className="text-2xl md:text-4xl">enrique@tlgm.mx</h3>
             </div>
 
-            <div className="py-16">
-              <p className="text-lg font-thin">Connect</p>
+            {/* Social */}
+            <div className="py-10 md:py-16">
+              <p className="text-base md:text-lg font-thin">Connect</p>
               <div className="flex flex-row gap-4 mb-4 pt-2">
-                <Link href="https://www.linkedin.com/company/92421640/admin/dashboard/">
+                <Link
+                  href="https://www.linkedin.com/company/92421640/admin/dashboard/"
+                  aria-label="LinkedIn"
+                >
                   <Image
                     src="/imgs/linkedin-logo.svg"
                     alt="LinkedIn"
@@ -45,7 +57,10 @@ export const Footer = () => {
                     className="invert brightness-0"
                   />
                 </Link>
-                <Link href="https://www.instagram.com/telegramaaudiovisual/">
+                <Link
+                  href="https://www.instagram.com/telegramaaudiovisual/"
+                  aria-label="Instagram"
+                >
                   <Image
                     src="/imgs/instagram-logo.svg"
                     alt="Instagram"
@@ -62,7 +77,7 @@ export const Footer = () => {
 
       {/* Bottom copyright */}
       <h3
-        className="text-xs text-white text-center"
+        className="text-[10px] md:text-xs text-white text-center py-3"
         style={{ backgroundColor: "#1d2020" }}
       >
         © 2023 Telegrama Audiovisual SA de CV

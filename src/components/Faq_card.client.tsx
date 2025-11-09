@@ -14,17 +14,21 @@ export const Faq_card = ({ index, question, answer }: FaqCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="p-4 flex flex-col border-b border-gray-200">
+    <div className="p-4 md:p-6 flex flex-col border-b border-gray-200">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex flex-row items-start justify-between w-full text-left"
       >
         <h3
-          className={`text-4xl font-semibold mb-2 pr-2 tracking-[-0.08em] transition-colors duration-300 ${
-            isOpen ? "text-[#F0B225]" : "text-black"
-          }`}
+          className={`
+            text-2xl md:text-4xl font-semibold mb-2 pr-2 tracking-[-0.06em]
+            transition-colors duration-300
+            ${isOpen ? "text-[#F0B225]" : "text-black"}
+          `}
         >
-          <span className="text-4xl font-semibold mr-2">{index + 1}.</span>
+          <span className="text-2xl md:text-4xl font-semibold mr-2">
+            {index + 1}.
+          </span>
           {question}
         </h3>
 
@@ -33,8 +37,9 @@ export const Faq_card = ({ index, question, answer }: FaqCardProps) => {
           alt="toggle arrow"
           width={20}
           height={15}
-            className={`mt-2 shrink-0 transition-transform duration-300 ${
-            isOpen ? "rotate-180" : "rotate-0"}`}
+          className={`mt-2 shrink-0 transition-transform duration-300 ${
+            isOpen ? "rotate-180" : "rotate-0"
+          }`}
         />
       </button>
 
@@ -48,7 +53,9 @@ export const Faq_card = ({ index, question, answer }: FaqCardProps) => {
             transition={{ duration: 0.4, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <p className="text-gray-600 text-lg mt-2">{answer}</p>
+            <p className="text-gray-600 text-base md:text-lg mt-2 leading-relaxed">
+              {answer}
+            </p>
           </motion.div>
         )}
       </AnimatePresence>

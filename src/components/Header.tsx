@@ -13,7 +13,7 @@ export const Header = () => {
           />
         </Link>
 
-        <div className="flex items-center space-x-8 text-lg font-normal">
+        <div className="hidden md:flex items-center space-x-8 text-lg font-normal">
           <Link href="/" className="text-[#F0B225]">
             Productions
           </Link>

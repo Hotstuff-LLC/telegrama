@@ -2,8 +2,21 @@ import { Faq_card } from "./Faq_card.client";
 
 export const Faq = ({ blok }: any) => {
   return (
-    <div className="flex flex-row container mx-auto px-16 py-16">
-      <h3 className="text-6xl font-normal basis-full md:basis-1/3">
+    <div
+      className="
+        flex flex-col md:flex-row 
+        container mx-auto 
+        px-6 md:px-16 py-12 md:py-16
+        gap-8 md:gap-0
+      "
+    >
+      <h3
+        className="
+          text-3xl md:text-6xl font-normal 
+          basis-full md:basis-1/3 
+          mb-6 md:mb-0
+        "
+      >
         Find Answers <br /> in Our FAQ
       </h3>
 
@@ -20,3 +33,4 @@ export const Faq = ({ blok }: any) => {
     </div>
   );
 };
+
