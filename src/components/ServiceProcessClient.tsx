@@ -1,60 +1,52 @@
 "use client";
-import { useState } from "react";
-import ContactForm from "./ContactForm";
 
-export default function FooterClient() {
-  const [showForm, setShowForm] = useState(false);
-  const toggleForm = () => setShowForm((prev) => !prev);
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+
+interface ServiceProcessClientProps {
+  children: React.ReactNode[];
+}
+
+export const ServiceProcessClient = ({ children }: ServiceProcessClientProps) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (Array.isArray(children)) {
+      setCount(children.length);
+    }
+  }, [children]);
 
   return (
-    <>
-      {/* Background buffer — stays behind everything */}
-      <div
-        className="absolute left-0 w-full"
-        style={{
-          backgroundColor: "#ec3a1a",
-          height: showForm ? "100%" : "400px", // adjust base height as needed
-          zIndex: -1,
-          top: 0,
-        }}
-      ></div>
+    <div className="p-16 container mx-auto flex flex-col items-end gap-4">
+      {Array.isArray(children) &&
+        children.map((child, index) => {
+          const baseWidth = 80 - (index * (60 / Math.max(count - 1, 1)));
+          const widthPercent = Math.min(baseWidth + 10, 100);
 
-      {/* CTA Banner */}
-      <div
-        className="
-          relative text-3xl md:text-6xl text-white 
-          py-12 md:py-26 px-6 md:px-12 
-          flex flex-col md:flex-row items-center md:items-center justify-between gap-6
-        "
-        style={{ backgroundColor: "#ec3a1a" }}
-      >
-        <h3 className="text-center md:text-left leading-tight">
-          Tell us about your project
-          <br />—we'll handle the rest.
-        </h3>
-
-        <button
-          onClick={toggleForm}
-          className="
-            bg-white text-black 
-            text-xl md:text-4xl rounded-full 
-            px-8 md:px-10 py-4 md:py-6 
-            font-regular hover:bg-gray-100 transition
-          "
-        >
-          {showForm ? "Close Form" : "Let's Connect"}
-        </button>
-      </div>
-
-      {/* Animated Form Reveal */}
-      <div
-        className={`overflow-hidden transition-[max-height,opacity] duration-700 ease-in-out ${
-          showForm ? "max-h-[1500px] opacity-100" : "max-h-0 opacity-0"
-        }`}
-        style={{ backgroundColor: "#ec3a1a" }}
-      >
-        <ContactForm />
-      </div>
-    </>
+          return (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{
+                duration: 0.8,
+                delay: index * 0.2,
+                ease: "easeOut",
+              }}
+              viewport={{ once: true, amount: 0.3 }}
+              className="overflow-hidden flex justify-end w-full origin-right"
+            >
+              <motion.div
+                className="transition-all duration-700 ease-out"
+                style={{
+                  width: `${widthPercent}%`,
+                }}
+              >
+                {child}
+              </motion.div>
+            </motion.div>
+          );
+        })}
+    </div>
   );
-}
+};
