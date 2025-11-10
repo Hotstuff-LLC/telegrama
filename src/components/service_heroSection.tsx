@@ -1,4 +1,5 @@
 import { StoryblokComponent } from "@storyblok/react";
+import { ServiceHeroClient } from "./ServiceHeroClient";
 
 export const service_heroSection = ({ blok }: any) => {
   return (
@@ -20,14 +21,12 @@ export const service_heroSection = ({ blok }: any) => {
         />
       )}
 
-      {/* Texts */}
-      <p className="text-lg sm:text-2xl md:text-3xl md:w-[600px] md:pl-6 pt-6 pb-4 font-semibold">
-        {blok.hero_service_text}
-      </p>
-
-      <p className="text-lg sm:text-2xl md:text-3xl md:w-[600px] md:pl-6 pb-12 md:pb-16">
-        {blok.hero_service_text_secundary}
-      </p>
+      {/* Animated Texts */}
+      <ServiceHeroClient
+        primaryText={blok.hero_service_text}
+        secondaryText={blok.hero_service_text_secundary}
+      />
     </div>
   );
 };
+

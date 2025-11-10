@@ -4,9 +4,18 @@ import FooterClient from "./FooterClient";
 
 export const Footer = () => {
   return (
-    <div className="overflow-x-hidden w-full"> {/* ⬅️ prevents horizontal scroll */}
-      <div className="flex flex-col">
-        {/* Top CTA Section */}
+    <div className="overflow-x-hidden w-full relative">
+      {/*Static red buffer background */}
+      <div
+        className="absolute top-0 left-0 w-full -z-10"
+        style={{
+          backgroundColor: "#ec3a1a",
+          height: "1000px", // match or slightly exceed form max height
+        }}
+      />
+
+      <div className="flex flex-col relative z-10">
+        {/* Top CTA + Form */}
         <FooterClient />
 
         {/* Footer Info Section */}
@@ -75,9 +84,7 @@ export const Footer = () => {
       </div>
 
       {/* Bottom copyright */}
-      <h3
-        className="text-[10px] md:text-xs text-white text-center py-3 bg-[#1d2020]"
-      >
+      <h3 className="text-[10px] md:text-xs text-white text-center py-3 bg-[#1d2020]">
         © 2023 Telegrama Audiovisual SA de CV
       </h3>
     </div>

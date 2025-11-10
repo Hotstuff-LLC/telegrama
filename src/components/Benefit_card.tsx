@@ -1,12 +1,20 @@
 export const Benefit_card = ({ blok }: any) => {
   return (
-    <div className="p-4 md:p-4">
-      <h3 className="text-4xl md:text-6xl font-semibold mb-2 pb-8 tracking-[-0.08em] text-center md:text-left">
+    <div className="p-4 md:p-4 flex flex-col">
+      <h3
+        className="
+          text-4xl md:text-6xl font-semibold mb-2 pb-8 tracking-[-0.08em]
+          text-center md:text-left
+          min-h-18 md:min-h-24 lg:min-h-28
+        "
+      >
         {blok.benefit_name}
       </h3>
-      <p className="text-lg md:text-xl text-center md:text-left">
+
+      <p className="text-lg md:text-xl text-center md:text-left leading-relaxed">
         {blok.benefit_description}
       </p>
     </div>
   );
 };
+

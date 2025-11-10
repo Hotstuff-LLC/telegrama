@@ -8,10 +8,21 @@ export default function FooterClient() {
 
   return (
     <>
+      {/* Background buffer — stays behind everything */}
+      <div
+        className="absolute left-0 w-full"
+        style={{
+          backgroundColor: "#ec3a1a",
+          height: showForm ? "100%" : "400px", // adjust base height as needed
+          zIndex: -1,
+          top: 0,
+        }}
+      ></div>
+
       {/* CTA Banner */}
       <div
         className="
-          text-3xl md:text-6xl text-white 
+          relative text-3xl md:text-6xl text-white 
           py-12 md:py-26 px-6 md:px-12 
           flex flex-col md:flex-row items-center md:items-center justify-between gap-6
         "
@@ -37,14 +48,10 @@ export default function FooterClient() {
 
       {/* Animated Form Reveal */}
       <div
-        className={`
-          overflow-hidden 
-          transition-[max-height,opacity] duration-700 ease-in-out
-          ${showForm ? "max-h-[1500px] opacity-100" : "max-h-0 opacity-0"}
-        `}
-        style={{
-          backgroundColor: "#ec3a1a", // ✅ keep red visible during transition
-        }}
+        className={`overflow-hidden transition-[max-height,opacity] duration-700 ease-in-out ${
+          showForm ? "max-h-[1500px] opacity-100" : "max-h-0 opacity-0"
+        }`}
+        style={{ backgroundColor: "#ec3a1a" }}
       >
         <ContactForm />
       </div>
