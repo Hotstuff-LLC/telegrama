@@ -22,7 +22,7 @@ export const Bio_card = ({ index, name, text, image }: BioCardProps) => {
         transition-all duration-300
       "
     >
-      {/* Imagen */}
+      {/* Image */}
       {image && (
         <Image
           src={image}
@@ -33,7 +33,7 @@ export const Bio_card = ({ index, name, text, image }: BioCardProps) => {
             object-cover object-top 
             w-full md:w-[462px] 
             h-[200px] md:h-[271px] 
-            rounded-lg mb-4
+            mb-4
           "
         />
       )}
@@ -55,16 +55,21 @@ export const Bio_card = ({ index, name, text, image }: BioCardProps) => {
         </h3>
       </button>
 
-      {/* Role */}
-      <p
-        className="
-          text-gray-600 
-          text-lg md:text-xl 
-          font-semibold mb-2
-        "
-      >
-        Producer / Director
-      </p>
+      {/* Role + Arrow */}
+      <div className="flex flex-row items-center gap-2 mb-2">
+        <p className="text-gray-600 text-lg md:text-xl font-semibold">
+          Producer / Director
+        </p>
+        <Image
+          src="/imgs/arrow-down.png"
+          alt="arrow down"
+          width={14}
+          height={14}
+          className={`transition-transform duration-300 ${
+            isOpen ? "rotate-180" : "rotate-0"
+          }`}
+        />
+      </div>
 
       {/* Reveal Text */}
       <AnimatePresence>
@@ -77,15 +82,40 @@ export const Bio_card = ({ index, name, text, image }: BioCardProps) => {
             transition={{ duration: 0.4, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <p
-              className="
-                text-gray-600 
-                text-base md:text-lg 
-                mt-2 leading-relaxed
-              "
-            >
+            <p className="text-gray-600 text-base md:text-lg mt-2 leading-relaxed mb-4">
               {text}
             </p>
+
+            {/* Social Logos */}
+            <div className="flex flex-row gap-3">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#F0B225] w-7 h-7 flex items-center justify-center rounded-md"
+              >
+                <Image
+                  src="/imgs/instagram-logo.svg"
+                  alt="Instagram"
+                  width={18}
+                  height={18}
+                />
+              </a>
+
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#F0B225] w-7 h-7 flex items-center justify-center rounded-md"
+              >
+                <Image
+                  src="/imgs/linkedin-logo.svg"
+                  alt="LinkedIn"
+                  width={18}
+                  height={18}
+                />
+              </a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

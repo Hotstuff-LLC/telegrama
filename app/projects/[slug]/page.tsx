@@ -1,5 +1,7 @@
 import { getStoryblokApi } from "@storyblok/react/rsc";
 import { StoryblokStory } from "@storyblok/react/rsc";
+import Link from "next/link";
+import Image from "next/image";
 
 export const generateStaticParams = async () => {
   const client = getStoryblokApi();
@@ -22,7 +24,31 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   try {
     const story = await fetchProjectPage(slug);
-    return <StoryblokStory story={story} />
+    return (
+    <div>    
+      <StoryblokStory story={story} />
+            <div className="container mx-auto font-semibold py-8 pb-16 flex flex-row justify-between items-center">
+        {/* LEFT LINK with rotated arrow */}
+        <Link
+          href="/"
+          className="text-3xl text-[#EE3400] flex items-center gap-3 hover:opacity-80 transition"
+        >
+          <Image
+            src="/imgs/arrow-right.svg"
+            alt="arrow back"
+            width={40}
+            height={40}
+            className="-rotate-180 filter invert-49 sepia-91 saturate-4495 hue-rotate-352 brightness-98 contrast-104"
+
+          />
+          Back To Home
+        </Link>
+
+      </div>
+    
+    </div>
+
+    )
   } catch (err: any) {
     console.error("Storyblok fetch failed:", err.response?.data || err);
     return <div>Story not found</div>;

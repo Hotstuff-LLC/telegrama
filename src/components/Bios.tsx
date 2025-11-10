@@ -2,7 +2,7 @@ import { Bio_card } from "./bio_card.client";
 
 export const Bios = ({ blok }: any) => {
   return (
-    <div className="py-12 md:py-20 container mx-auto px-6 md:px-0">
+    <div id="bios" className="py-12 md:py-20 container mx-auto px-6 md:px-0">
       <h3
         className="
           text-3xl md:text-6xl 

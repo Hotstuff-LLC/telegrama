@@ -17,19 +17,22 @@ export const ServiceProcessClient = ({ children }: ServiceProcessClientProps) =>
   }, [children]);
 
   return (
-    <div className="p-16 container mx-auto flex flex-col items-end gap-4">
+    <div className="p-4 container mx-auto flex flex-col items-end gap-2 relative">
       {Array.isArray(children) &&
         children.map((child, index) => {
-          const baseWidth = 80 - (index * (60 / Math.max(count - 1, 1)));
-          const widthPercent = Math.min(baseWidth + 10, 100);
+          // Width decreases linearly from 100% to 20%
+          const max = 100;
+          const min = 30;
+          const widthPercent =
+            count > 1 ? max - ((max - min) / (count - 1)) * index : max;
 
           return (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{
-                duration: 0.8,
+                duration: 0.7,
                 delay: index * 0.2,
                 ease: "easeOut",
               }}
@@ -37,7 +40,7 @@ export const ServiceProcessClient = ({ children }: ServiceProcessClientProps) =>
               className="overflow-hidden flex justify-end w-full origin-right"
             >
               <motion.div
-                className="transition-all duration-700 ease-out"
+                className="transition-all duration-700 ease-out md:w-auto w-full"
                 style={{
                   width: `${widthPercent}%`,
                 }}

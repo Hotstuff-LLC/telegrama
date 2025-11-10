@@ -12,11 +12,7 @@ export default function HeaderClient({ children }: { children: React.ReactNode }
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY && currentScrollY > 80) {
-        setIsVisible(false);
-      } else {
-        setIsVisible(true);
-      }
+      setIsVisible(currentScrollY <= lastScrollY || currentScrollY < 80);
       setLastScrollY(currentScrollY);
     };
 
@@ -30,60 +26,34 @@ export default function HeaderClient({ children }: { children: React.ReactNode }
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between px-6 py-4">
-        <Link href="/">
-          <img
-            src="/imgs/Logo.png"
-            alt="Logo"
-            className="h-10 w-auto"
-          />
-        </Link>
+      {/* Server-rendered header (logo + desktop nav) */}
+      {children}
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center space-x-8 text-lg font-normal">
-          <Link href="/" className="text-[#F0B225]">
-            Productions
-          </Link>
-          <Link href="/">About Us</Link>
-          <Link href="/">Clients</Link>
-          <Link href="/">Services</Link>
-          <Link href="/">Team</Link>
-          <Link href="/">FAQ</Link>
-          <Link
-            href="/"
-            className="text-white text-base rounded-full bg-[#EC3A1A] px-6 py-2 font-medium"
-          >
-            Contact
-          </Link>
-        </nav>
+      {/* Mobile toggle */}
+      <button
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        className="md:hidden text-black absolute right-6 top-4"
+      >
+        {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+      </button>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden text-black"
-        >
-          {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-      </div>
-
-      {/* Mobile Dropdown Menu */}
+      {/* Mobile dropdown */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white shadow-md px-6 py-4 space-y-4 text-lg font-normal">
-          <Link href="/" className="block text-[#F0B225]">Productions</Link>
-          <Link href="/" className="block">About Us</Link>
-          <Link href="/" className="block">Clients</Link>
-          <Link href="/" className="block">Services</Link>
-          <Link href="/" className="block">Team</Link>
-          <Link href="/" className="block">FAQ</Link>
-          <Link
+        <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-md px-6 py-4 flex flex-col space-y-4 text-lg font-normal">
+          <a href="/" className="block text-[#F0B225]">Productions</a>
+          <a href="#about_us" className="block">About Us</a>
+          <a href="#clients" className="block">Clients</a>
+          <a href="#services" className="block">Services</a>
+          <a href="#bios" className="block">Team</a>
+          <a href="#faq" className="block">FAQ</a>
+          <a
             href="/"
-            className="block text-white text-base rounded-full bg-[#EC3A1A] px-6 py-2 font-medium text-center"
+            className="block text-white text-base rounded-full bg-[#EC3A1A] px-6 py-2 text-center"
           >
             Contact
-          </Link>
+          </a>
         </div>
       )}
     </header>
   );
 }
-

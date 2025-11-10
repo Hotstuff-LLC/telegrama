@@ -2,7 +2,7 @@ import { Faq_card } from "./Faq_card.client";
 
 export const Faq = ({ blok }: any) => {
   return (
-    <div
+    <div id="faq"
       className="
         flex flex-col md:flex-row 
         container mx-auto 
