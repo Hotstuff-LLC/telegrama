@@ -34,7 +34,7 @@ export default function RootLayout({
     <StoryblokProvider>
     <html lang="en">
       <body
-        className={`${dmSans.variable} antialiased`}
+        className={`${dmSans.variable} antialiased overflow-x-hidden`}
       >
                   <Header />
         {children}

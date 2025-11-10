@@ -17,3 +17,4 @@ export const Client_card = ({ blok }: any) => {
     </div>
   );
 };
+

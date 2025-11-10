@@ -57,7 +57,7 @@ export const Hero_projects = ({ blok, index = 0 }: any) => {
         <img
           src={blok.project_asset.filename}
           alt={blok.project_asset.alt || blok.project_name}
-          className={`rounded-xl object-cover w-[80%] h-[80%] ${layout.img}`}
+          className={`rounded-xl object-cover w-[800px] h-auto ${layout.img}`}
         />
       )}
 

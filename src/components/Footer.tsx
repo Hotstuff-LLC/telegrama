@@ -4,20 +4,19 @@ import FooterClient from "./FooterClient";
 
 export const Footer = () => {
   return (
-    <div>
+    <div className="overflow-x-hidden w-full"> {/* ⬅️ prevents horizontal scroll */}
       <div className="flex flex-col">
         {/* Top CTA Section */}
         <FooterClient />
 
         {/* Footer Info Section */}
         <footer
-          className="w-full bg-black text-white mt-auto py-4 transition-all duration-300"
-          style={{ backgroundColor: "#1d2020" }}
+          className="w-full bg-[#1d2020] text-white mt-auto py-4 transition-all duration-300"
         >
           <nav
             className="
-              container mx-auto px-4 w-full py-8 flex flex-col justify-between
-              md:ml-[33%] ml-0
+              max-w-6xl mx-auto px-4 w-full py-8 flex flex-col justify-between
+              md:pl-[33%] md:ml-0
             "
           >
             {/* Address */}
@@ -77,8 +76,7 @@ export const Footer = () => {
 
       {/* Bottom copyright */}
       <h3
-        className="text-[10px] md:text-xs text-white text-center py-3"
-        style={{ backgroundColor: "#1d2020" }}
+        className="text-[10px] md:text-xs text-white text-center py-3 bg-[#1d2020]"
       >
         © 2023 Telegrama Audiovisual SA de CV
       </h3>

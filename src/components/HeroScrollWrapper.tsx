@@ -1,13 +1,12 @@
-// HeroScrollWrapperClient.tsx
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { ReactNode } from 'react';
+import { motion } from "framer-motion";
+import { ReactNode } from "react";
 
 export default function HeroScrollWrapperClient({ children }: { children: ReactNode }) {
   return (
     <motion.div
-      className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth"
+      className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth w-full h-full"
       initial={{ x: 0 }}
       animate={{ x: 0 }}
       transition={{ duration: 1 }}
@@ -16,3 +15,4 @@ export default function HeroScrollWrapperClient({ children }: { children: ReactN
     </motion.div>
   );
 }
+
