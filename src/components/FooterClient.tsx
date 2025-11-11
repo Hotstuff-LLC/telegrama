@@ -17,7 +17,7 @@ export default function FooterClient() {
         "
         style={{ backgroundColor: "#ec3a1a" }}
       >
-        <h3 className="text-center md:text-left leading-tight">
+        <h3 id="contact" className="text-center md:text-left leading-tight">
           Tell us about your project
           <br />—we'll handle the rest.
         </h3>

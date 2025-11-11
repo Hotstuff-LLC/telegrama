@@ -1,24 +1,46 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
-import Link from "next/link";
 
 export default function HeaderClient({ children }: { children: React.ReactNode }) {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
+  const navItems = [
+    { href: "/", label: "Home" },
+    { href: "/services", label: "Services" },
+    { href: "/narrative-content", label: "Narrative" },
+    { href: "/casting", label: "Casting" },
+  ];
+
+  // Navbar visibility on scroll
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       setIsVisible(currentScrollY <= lastScrollY || currentScrollY < 80);
       setLastScrollY(currentScrollY);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
+
+  // Smooth scroll for #contact
+  useEffect(() => {
+    const links = document.querySelectorAll('a[href^="#"]');
+    const handleClick = (e: Event) => {
+      e.preventDefault();
+      const targetId = (e.currentTarget as HTMLAnchorElement).getAttribute("href")?.substring(1);
+      const targetEl = targetId ? document.getElementById(targetId) : null;
+      if (targetEl) targetEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      setIsMenuOpen(false);
+    };
+    links.forEach((link) => link.addEventListener("click", handleClick));
+    return () => links.forEach((link) => link.removeEventListener("click", handleClick));
+  }, []);
 
   return (
     <header
@@ -26,28 +48,58 @@ export default function HeaderClient({ children }: { children: React.ReactNode }
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      {/* Server-rendered header (logo + desktop nav) */}
-      {children}
+      <div className="container mx-auto flex items-center justify-between px-6 py-4">
+        {children}
 
-      {/* Mobile toggle */}
-      <button
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
-        className="md:hidden text-black absolute right-6 top-4"
-      >
-        {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-      </button>
+        {/* ✅ Desktop Nav */}
+        <nav className="hidden md:flex items-center space-x-8 text-lg font-normal">
+          {navItems.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className={`transition-colors ${
+                pathname === item.href ? "text-[#F0B225]" : "text-black"
+              } ${
+                item.href === "/narrative-content" ? "px-4" : "" // wider spacing for that one
+              }`}
+            >
+              {item.label}
+            </a>
+          ))}
+          <a
+            href="#contact"
+            className="text-white text-base rounded-full bg-[#EC3A1A] px-6 py-2 font-medium"
+          >
+            Contact
+          </a>
+        </nav>
 
-      {/* Mobile dropdown */}
+        {/* ✅ Mobile toggle (centered vertically) */}
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="md:hidden text-black ml-auto flex items-center justify-center"
+        >
+          {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+      </div>
+
+      {/* ✅ Mobile dropdown */}
       {isMenuOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-md px-6 py-4 flex flex-col space-y-4 text-lg font-normal">
-          <a href="/" className="block text-[#F0B225]">Productions</a>
-          <a href="#about_us" className="block">About Us</a>
-          <a href="#clients" className="block">Clients</a>
-          <a href="#services" className="block">Services</a>
-          <a href="#bios" className="block">Team</a>
-          <a href="#faq" className="block">FAQ</a>
+          {navItems.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className={`block transition-colors ${
+                pathname === item.href ? "text-[#F0B225]" : "text-black"
+              }`}
+            >
+              {item.label}
+            </a>
+          ))}
+
           <a
-            href="/"
+            href="#contact"
             className="block text-white text-base rounded-full bg-[#EC3A1A] px-6 py-2 text-center"
           >
             Contact
@@ -57,3 +109,4 @@ export default function HeaderClient({ children }: { children: React.ReactNode }
     </header>
   );
 }
+

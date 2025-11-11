@@ -47,7 +47,7 @@ export const Hero_projects = ({ blok, index = 0 }: any) => {
     >
       {/* h3 */}
       <h3
-        className={`text-6xl font-bold ${layout.h3}`}
+        className={`text-6xl font-bold uppercase ${layout.h3}`}
       >
         {blok.project_name}
       </h3>
