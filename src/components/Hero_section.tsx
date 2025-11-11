@@ -1,17 +1,16 @@
 import { StoryblokComponent } from "@storyblok/react";
 import HeroScrollWrapperClient from "./HeroScrollWrapper";
-import { Hero_projects } from "./Hero_projects"; // import directly for index passing
+import { Hero_projects } from "./Hero_projects";
 
 export const Hero_section = ({ blok }: any) => {
   return (
-    <section className="relative w-full h-screen overflow-hidden">
+    <section className="relative w-screen h-100dvh overflow-hidden">
       <HeroScrollWrapperClient>
         {blok.hero_projects?.map((nestedBlok: any, index: number) => (
           <div
             key={nestedBlok._uid}
-            className="w-screen h-screen shrink-0 snap-center"
+            className="w-screen h-100dvh shrink-0 snap-center flex items-center justify-center"
           >
-            {/*Render Hero_projects directly so we can pass index */}
             <Hero_projects blok={nestedBlok} index={index} />
           </div>
         ))}

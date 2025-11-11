@@ -9,20 +9,30 @@ interface ServiceProcessClientProps {
 
 export const ServiceProcessClient = ({ children }: ServiceProcessClientProps) => {
   const [count, setCount] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     if (Array.isArray(children)) {
       setCount(children.length);
     }
+
+    // Detect mobile once on mount
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize(); // set initial
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, [children]);
 
   return (
-    <div className="p-4 container mx-auto flex flex-col items-end gap-2 relative">
+    <div className="p-4 container mx-auto flex flex-col md:items-end gap-6 relative">
       {Array.isArray(children) &&
         children.map((child, index) => {
-          // Width decreases linearly from 100% to 20%
-          const max = 100;
-          const min = 30;
+          // ✅ Use different width range depending on screen size
+          const max = isMobile ? 100 : 100;
+          const min = isMobile ? 100 : 30;
+
           const widthPercent =
             count > 1 ? max - ((max - min) / (count - 1)) * index : max;
 
@@ -37,10 +47,10 @@ export const ServiceProcessClient = ({ children }: ServiceProcessClientProps) =>
                 ease: "easeOut",
               }}
               viewport={{ once: true, amount: 0.3 }}
-              className="overflow-hidden flex justify-end w-full origin-right"
+              className="overflow-hidden flex justify-center md:justify-end w-full origin-right"
             >
               <motion.div
-                className="transition-all duration-700 ease-out md:w-auto w-full"
+                className="transition-all duration-700 ease-out w-full md:w-auto"
                 style={{
                   width: `${widthPercent}%`,
                 }}

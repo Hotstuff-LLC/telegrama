@@ -26,7 +26,7 @@ export const Bio_card = ({ index, name, text, image }: BioCardProps) => {
       {image && (
         <Image
           src={image}
-          alt={name || "Bio image"}
+          alt={name || 'Bio image'}
           width={462}
           height={271}
           className="
@@ -48,16 +48,24 @@ export const Bio_card = ({ index, name, text, image }: BioCardProps) => {
             text-3xl md:text-5xl font-semibold cursor-pointer 
             mb-2 tracking-[-0.05em] 
             transition-colors duration-300 
-            ${isOpen ? "text-[#F0B225]" : "text-black"}
+            ${isOpen ? 'text-[#F0B225]' : 'text-black'}
           `}
         >
           {name}
         </h3>
       </button>
 
-      {/* Role + Arrow */}
-      <div className="flex flex-row items-center gap-2 mb-2">
-        <p className="text-gray-600 text-lg md:text-xl font-semibold">
+      {/* ✅ Clickable Role + Arrow */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex flex-row items-center gap-2 mb-2 focus:outline-none"
+      >
+        <p
+          className={`
+            text-gray-600 text-lg md:text-xl font-semibold transition-colors cursor-pointer
+            ${isOpen ? 'text-[#F0B225]' : ''}
+          `}
+        >
           Producer / Director
         </p>
         <Image
@@ -65,11 +73,11 @@ export const Bio_card = ({ index, name, text, image }: BioCardProps) => {
           alt="arrow down"
           width={14}
           height={14}
-          className={`transition-transform duration-300 ${
-            isOpen ? "rotate-180" : "rotate-0"
+          className={`transition-transform cursor-pointer duration-300 ${
+            isOpen ? 'rotate-180' : 'rotate-0'
           }`}
         />
-      </div>
+      </button>
 
       {/* Reveal Text */}
       <AnimatePresence>
@@ -77,9 +85,9 @@ export const Bio_card = ({ index, name, text, image }: BioCardProps) => {
           <motion.div
             key="content"
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
+            animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
+            transition={{ duration: 0.4, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
             <p className="text-gray-600 text-base md:text-lg mt-2 leading-relaxed mb-4">

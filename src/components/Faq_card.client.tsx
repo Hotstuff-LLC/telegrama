@@ -22,7 +22,7 @@ export const Faq_card = ({ index, question, answer }: FaqCardProps) => {
         <h3
           className={`
             text-2xl md:text-4xl font-semibold mb-2 pr-2 tracking-[-0.06em]
-            transition-colors duration-300
+            transition-colors duration-300 cursor-pointer
             ${isOpen ? "text-[#F0B225]" : "text-black"}
           `}
         >

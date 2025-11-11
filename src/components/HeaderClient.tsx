@@ -17,18 +17,32 @@ export default function HeaderClient({ children }: { children: React.ReactNode }
     { href: "/casting", label: "Casting" },
   ];
 
-  // Navbar visibility on scroll
+  // ✅ Navbar visibility on scroll
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      setIsVisible(currentScrollY <= lastScrollY || currentScrollY < 80);
+
+      if (pathname === "/") {
+        // Hide completely when at very top
+        if (currentScrollY === 0) {
+          setIsVisible(false);
+        } else {
+          // Normal scroll-up behavior after that
+          setIsVisible(currentScrollY <= lastScrollY);
+        }
+      } else {
+        // Normal behavior for all other pages
+        setIsVisible(currentScrollY <= lastScrollY || currentScrollY < 80);
+      }
+
       setLastScrollY(currentScrollY);
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, [lastScrollY, pathname]);
 
-  // Smooth scroll for #contact
+  // ✅ Smooth scroll for #contact
   useEffect(() => {
     const links = document.querySelectorAll('a[href^="#"]');
     const handleClick = (e: Event) => {
@@ -60,7 +74,7 @@ export default function HeaderClient({ children }: { children: React.ReactNode }
               className={`transition-colors ${
                 pathname === item.href ? "text-[#F0B225]" : "text-black"
               } ${
-                item.href === "/narrative-content" ? "px-4" : "" // wider spacing for that one
+                item.href === "/narrative-content" ? "px-4" : ""
               }`}
             >
               {item.label}
@@ -74,7 +88,7 @@ export default function HeaderClient({ children }: { children: React.ReactNode }
           </a>
         </nav>
 
-        {/* ✅ Mobile toggle (centered vertically) */}
+        {/* ✅ Mobile toggle */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="md:hidden text-black ml-auto flex items-center justify-center"
@@ -109,4 +123,3 @@ export default function HeaderClient({ children }: { children: React.ReactNode }
     </header>
   );
 }
-

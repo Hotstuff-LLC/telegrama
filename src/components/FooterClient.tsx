@@ -28,7 +28,7 @@ export default function FooterClient() {
             bg-white text-black 
             text-xl md:text-4xl rounded-full 
             px-8 md:px-10 py-4 md:py-6 
-            font-regular hover:bg-gray-100 transition
+            font-regular hover:bg-gray-100 transition cursor-pointer
           "
         >
           {showForm ? "Close Form" : "Let's Connect"}
