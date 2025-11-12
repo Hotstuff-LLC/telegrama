@@ -23,7 +23,7 @@ import { Project } from "./Project";
 import { production_card } from "./production_card";
 import { other_productions } from "./other_productions";
 import { production_link } from "./production_link";
-import { Hero_list } from "./Hero_list";
+import { HeroList } from "./Hero_list";
 import  {Hero_production_item}  from "./Hero_production_item";
 import { HeroSectionList } from "./HeroSectionList";
 
