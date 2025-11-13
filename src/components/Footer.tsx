@@ -85,7 +85,7 @@ export const Footer = () => {
 
       {/* Bottom copyright */}
       <h3 className="text-[10px] md:text-xs text-white text-center py-3 bg-[#1d2020]">
-        © 2023 Telegrama Audiovisual SA de CV
+        © 2025 HotStuff
       </h3>
     </div>
   );

@@ -68,7 +68,7 @@ export const Bio_card = ({ index, name, text, image }: BioCardProps) => {
         >
           Producer / Director
         </p>
-        <Image
+        {/*<Image
           src="/imgs/arrow-down.png"
           alt="arrow down"
           width={14}
@@ -76,7 +76,7 @@ export const Bio_card = ({ index, name, text, image }: BioCardProps) => {
           className={`transition-transform cursor-pointer duration-300 ${
             isOpen ? 'rotate-180' : 'rotate-0'
           }`}
-        />
+        />*/}
       </button>
 
       {/* Reveal Text */}

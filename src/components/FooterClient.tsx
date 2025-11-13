@@ -26,9 +26,10 @@ export default function FooterClient() {
           onClick={toggleForm}
           className="
             bg-white text-black 
-            text-xl md:text-4xl rounded-full 
-            px-8 md:px-10 py-4 md:py-6 
-            font-regular hover:bg-gray-100 transition cursor-pointer
+            text-[32px] md:text-4xl rounded-full 
+            px-8 py-4 
+            font-normal transition cursor-pointer
+            min-w-[190px] md:min-w-[298px] text-center md:min-h-[98px]
           "
         >
           {showForm ? "Close Form" : "Let's Connect"}
