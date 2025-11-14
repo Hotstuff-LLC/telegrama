@@ -6,7 +6,7 @@ export const Hero_production_item = ({ blok }: any) => {
 
   return (
     <div className="relative pb-4">
-      <h3 className="text-2xl font-medium mb-3">
+      <h3 className="font-dm-sans font-normal text-[64px] leading-[110%] tracking-[-0.01em] capitalize">
         <Link
           href={hero_production_url?.url || "#"}
           target="_blank"

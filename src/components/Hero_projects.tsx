@@ -2,42 +2,83 @@ export const Hero_projects = ({ blok, index = 0 }: any) => {
         const layouts = [
           // --- Slide 1 ---
           {
-            titleGroup: "col-start-1 row-start-1 self-center justify-self-start", // TL
-            img: "col-start-1 row-start-2 self-center justify-self-start",        // BL
-            num: "col-start-2 row-start-1 self-start justify-self-end translate-x-[-15%] translate-y-[10%]", // TR (moved inward)
-            p: "col-start-2 row-start-2 self-center justify-self-end",            // BR
+            titleGroup:
+              "col-start-1 row-start-1 self-end justify-self-start -translate-y-[10%]",
+
+            img:
+              "col-start-1 row-start-2 self-center justify-self-start",
+
+            num:
+              "col-start-2 row-start-1 self-center justify-self-start -translate-y-[60%] translate-x-[-15%] text-2xl",
+
+            p:
+              "col-start-2 row-start-2 self-end justify-self-end",
+
             align: "text-left",
           },
           // --- Slide 2 ---
           {
-            titleGroup: "col-start-1 row-start-2 self-center justify-self-start", // BL
-            img: "col-start-1 row-start-1 self-center justify-self-start",        // TL
-            num: "col-start-2 row-start-2 self-end justify-self-end translate-x-[-15%] translate-y-[-10%]", // BR (moved inward)
-            p: "col-start-2 row-start-1 self-start justify-self-end",             // TR
+            titleGroup:
+              "col-start-1 row-start-2 self-center justify-self-start translate-x-[120%]",
+
+            img:
+              "col-start-1 row-start-1 self-start justify-self-start translate-y-[15%]",
+
+            p:
+              "col-start-2 row-start-2 self-center justify-self-start translate-y-[15%] translate-x-[-40%]",
+
+            num:
+              "col-start-2 row-start-2 self-start justify-self-start -translate-y-[40%] translate-x-[10%] text-2xl",
+
             align: "text-left",
           },
           // --- Slide 3 ---
           {
-            titleGroup: "col-start-2 row-start-1 self-center justify-self-end text-right", // TR
-            img: "col-start-1 row-start-2 self-center justify-self-start",                 // BL
-            num: "col-start-1 row-start-1 self-start justify-self-start translate-x-[15%] translate-y-[10%]", // TL (moved inward)
-            p: "col-start-2 row-start-2 self-center justify-self-end",                     // BR
-            align: "text-right",
-          },
-          // --- Slide 4 ---
-          {
-            titleGroup: "col-start-1 row-start-2 self-center justify-self-start", // BL
-            img: "col-start-1 row-start-1 self-center justify-self-start",        // TL
-            num: "col-start-2 row-start-1 self-center justify-self-end translate-x-[-15%]", // TR
-            p: "col-start-2 row-start-2 self-center justify-self-end",            // BR
+            titleGroup:
+              "col-start-2 row-start-2 self-start justify-self-start text-left translate-y-[-10%]",
+
+            img:
+              "col-start-1 row-start-2 self-center justify-self-start",
+
+            num:
+              "col-start-2 row-start-1 self-start justify-self-start translate-y-[20%] text-2xl",
+
+            p:
+              "col-start-2 row-start-2 self-end justify-self-start text-left",
+
             align: "text-left",
           },
+
+          // --- Slide 4 ---
+          {
+              titleGroup:
+                "col-start-1 row-start-2 self-center justify-self-start translate-x-[65%]", // h3 pushed right
+
+              img:
+                "col-start-1 row-start-1 self-center justify-self-start",
+
+              num:
+                "col-start-2 row-start-1 self-center justify-self-end translate-x-[-15%]",
+
+              p:
+                "col-start-2 row-start-2 self-center justify-self-end ml-8", // gap added
+
+              align: "text-left",
+            },
           // --- Slide 5 ---
           {
-            titleGroup: "col-start-1 row-start-1 self-center justify-self-start", // TL
-            img: "col-start-1 row-start-2 self-center justify-self-start",        // BL
-            num: "col-start-2 row-start-2 self-center justify-self-end translate-x-[-15%] translate-y-[-10%]", // BR
-            p: "col-start-2 row-start-1 self-start justify-self-end",             // TR
+            titleGroup:
+              "col-start-1 row-start-1 self-center justify-self-start translate-x-[20%]", // shifted right
+
+            img:
+              "col-start-1 row-start-2 self-center justify-self-start",
+
+            num:
+              "col-start-2 row-start-2 self-center justify-self-end translate-x-[-15%] translate-y-[-10%]",
+
+            p:
+              "col-start-2 row-start-2 self-start justify-self-end ml-6", // moved to row 2 + slight gap
+
             align: "text-left",
           },
         ];
@@ -49,7 +90,7 @@ export const Hero_projects = ({ blok, index = 0 }: any) => {
   return (
     <div
       key={blok._uid}
-      className="grid grid-cols-2 grid-rows-2 gap-8 w-screen h-[100dvh] p-16 relative"
+      className="grid grid-cols-[700px_1fr] grid-rows-2 gap-8 w-screen h-[100dvh] p-16"
     >
       {/* Image */}
       {blok.project_asset?.filename && (
@@ -57,17 +98,17 @@ export const Hero_projects = ({ blok, index = 0 }: any) => {
           src={blok.project_asset.filename}
           alt={blok.project_asset.alt || blok.project_name}
           width={700}
-          height={349}
-          className={`object-cover w-[700px] h-[349px] rounded-xl ${layout.img}`}
+          height={393}
+          className={`object-cover w-[700px] h-[393px] ${layout.img}`}
         />
       )}
 
       {/* Area + Title group */}
       <div className={`${layout.titleGroup} ${layout.align} flex flex-col`}>
         {blok.project_area && (
-          <p className="text-base text-black uppercase mb-2">{blok.project_area}</p>
+          <p className="text-base text-black mb-2">{blok.project_area}</p>
         )}
-        <h3 className="text-6xl font-bold uppercase">{blok.project_name}</h3>
+        <h3 className="font-dm-sans font-semibold text-[96px] leading-[97%] tracking-[-8%]">{blok.project_name}</h3>
       </div>
 
       {/* Number */}
